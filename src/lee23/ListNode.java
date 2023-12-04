@@ -1,5 +1,13 @@
 package lee23;
 
+
+/**
+ * 23. 合并K个排序链表
+ * leecode: https://leetcode.com/problems/merge-k-sorted-lists/description/
+ * 题解：https://leetcode.com/problems/merge-k-sorted-lists/solutions/4363296/easy-and-efficient-way/
+ * 时间复杂度：Nlogk (N: 所有元素的个数，k: 链表的个数)
+ * 空间复杂度：O(1)
+ */
 public class ListNode {
     int val;
     ListNode next;
@@ -77,12 +85,13 @@ class Solution {
     }
     public static void main(String[] args) {
         Solution solution = new Solution();
-        ListNode[] lists = new ListNode[5];
+        ListNode[] lists = new ListNode[6];
         lists[0] = new ListNode(1, new ListNode(4, new ListNode(5)));
         lists[1] = new ListNode(1, new ListNode(3, new ListNode(4)));
         lists[2] = new ListNode(2, new ListNode(6));
         lists[3] = new ListNode(3, new ListNode(7));
         lists[4] = new ListNode(4, new ListNode(8));
+        lists[5] = new ListNode(5, new ListNode(9));
         solution.mergeKLists(lists);
     }
 }
