@@ -17,6 +17,11 @@ public class ListNode {
     }
 }
 
+/**
+ * leetcode 25. K 个一组翻转链表
+ * leetcode: https://leetcode.com/problems/reverse-nodes-in-k-group/description/
+ * 题解：https://leetcode.com/problems/reverse-nodes-in-k-group/solutions/4372113/java-easy-and-simple-way/
+ */
 class Solution {
     private String listToString(ListNode list){
         StringBuilder sb = new StringBuilder();
