@@ -65,23 +65,30 @@ class Solution {
 
         // Merge lists in pairs until there is only one list left
         int interval = 1;
-        while (interval < n) {
+        System.out.println("create interval: " + interval);
+        while (interval < n) { // in a loop until there is only one list left
             System.out.println();
-            for (int i = 0; i < n - interval; i += interval * 2) {
+            // merge list i with list i + interval. The interval is doubled after each iteration.
+            // i+interval must be less than n, otherwise there is no list to merge with
+            for (int i = 0; i < n - interval; i += interval * 2) {// increase i by interval * 2 each time
                 String indent = "  ".repeat(interval);
                 System.out.println(indent + "Interval: " + interval);
-                System.out.println(indent + "Merge List: " + i + " and List: " + (i + interval));
+                System.out.println(indent + "Merge Lists: i: " + i + " and (i + interval): " + (i + interval));
                 System.out.println(indent + "List "+ i + ": " + listToString(lists[i]));
                 System.out.println(indent + "List "+ (i + interval) + ": " + listToString(lists[i + interval]));
-                lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
+                lists[i] = mergeTwoLists(lists[i], lists[i + interval]); // merge list i with list i + interval
                 System.out.println(indent + "Merged list: " + listToString(lists[i]));
                 System.out.println(indent + "Interval: " + interval);
+                System.out.println(indent + "we have merged two lists, list " + i + " and list " + (i + interval) +" to the list "+ i);
+                System.out.println(indent + "need to jump to next pair of lists:"+ " "+ (i + interval * 2) + " and "+ (i + interval * 2 + interval));
+                System.out.println(indent + "so increase i by interval * 2 each time, i = " + i + " + " + interval + " * 2 = " + (i + interval * 2));
                 System.out.println();
             }
-            interval *= 2;
+            System.out.println("double the interval: " + interval + " * 2 = " + (interval * 2));
+            interval *= 2;// double the interval
         }
 
-        return lists[0];
+        return lists[0];// return the final list
     }
     public static void main(String[] args) {
         Solution solution = new Solution();
