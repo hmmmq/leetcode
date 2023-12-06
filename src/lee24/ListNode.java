@@ -1,5 +1,12 @@
 package lee24;
 
+/**
+ * 24. 两两交换链表中的节点
+ * leecode: https://leetcode.com/problems/swap-nodes-in-pairs/description/
+ * 题解：https://leetcode.com/problems/swap-nodes-in-pairs/solutions/4363400/easy-and-fast-solution/
+ * 时间复杂度：O(n)
+ * 空间复杂度：O(1)
+ */
 public class ListNode {
     int val;
     ListNode next;
