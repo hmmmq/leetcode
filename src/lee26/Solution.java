@@ -1,6 +1,15 @@
 package lee26;
-
+/*
+  leetcode 26. remove-duplicates-from-sorted-array
+  description: https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
+  solution: https://leetcode.com/problems/remove-duplicates-from-sorted-array/solutions/3839850/easy-and-efficient-approach/
+ */
 public class Solution {
+    /**
+     * Remove Duplicates from Sorted Array
+     * Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
+     * Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+     */
     public int removeDuplicates(int[] nums) {
         // check the length of nums
         int len = nums.length;
