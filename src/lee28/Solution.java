@@ -5,6 +5,9 @@ package lee28;
  * KMP算法
  * 1.构建next数组
  * 2.匹配
+ * 3.返回结果
+ * 时间复杂度O(m+n)
+ * 空间复杂度O(n)
  */
 class Solution {
     public int[] buildNext(String needleStr){
