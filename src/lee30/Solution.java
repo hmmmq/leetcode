@@ -5,6 +5,7 @@ import java.util.*;
 /**
  * 30. Substring with Concatenation of All Words
  * description: https://leetcode.com/problems/substring-with-concatenation-of-all-words/description/
+ * solution:https://leetcode.com/problems/substring-with-concatenation-of-all-words/solutions/4379597/easy-solution/
  */
 class Solution {
 
