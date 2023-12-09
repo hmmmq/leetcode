@@ -3,6 +3,9 @@ package lee22;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * description: https://leetcode.com/problems/generate-parentheses/solutions/4382240/improved-solution/
+ */
 class BetterSolution {
     public List<String> generateParenthesis(int n) {
 
