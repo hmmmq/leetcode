@@ -25,6 +25,12 @@ public class ListNode {
 }
 
 class Solution {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))));
+        solution.swapPairs(head);
+    }
+
     private String listToString(ListNode list) {
         StringBuilder sb = new StringBuilder();
         while (list != null) {
@@ -36,20 +42,24 @@ class Solution {
     }
 
     public ListNode swapPairs(ListNode head) {
+
         if (head == null || head.next == null) {
             return head; // 如果链表为空或只有一个节点，无需交换，直接返回
         }
 
-        ListNode dummy = new ListNode(0); // 创建一个虚拟头节点
-        System.out.println("create dummy node:" + dummy.val);
+        ListNode dummy = new ListNode(0);
+
         dummy.next = head;
-        System.out.println("dummy " + dummy.val + " --> head " + head.val);
 
         ListNode prev = dummy;
+
         ListNode current = head;
-        System.out.println("0: create prev node -> dummy " + prev.val + "\n  create current node -> head " + current.val);
+
+        System.out.println("0: create prev node -> dummy " + prev.val +
+                "\n  create current node -> head " + current.val);
 
         while (current != null && current.next != null) {
+
             System.out.println("\nnew round：" + listToString(dummy.next) + " prev :" + prev.val + "  current:" + current.val);
             System.out.println("1：create nextNode:" + current.next.val);
 
@@ -63,19 +73,16 @@ class Solution {
             current.next = nextNode.next;
 
             System.out.println(listToString(dummy.next));
-
             System.out.println("3：nextNode " + nextNode.val + " -->current " + current.val);
 
             nextNode.next = current;
 
             System.out.println(listToString(dummy.next));
-
             System.out.println("4：prev " + prev.val + " --> nextNode " + nextNode.val);
 
             prev.next = nextNode;
 
             System.out.println(listToString(dummy.next));
-
             System.out.println("5：prev " + prev.val + " -> " + current.val);
 
             prev = current;
@@ -89,13 +96,9 @@ class Solution {
 
 
         }
-        System.out.println("Finally：" + listToString(dummy.next));
-        return dummy.next;
-    }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4))));
-        solution.swapPairs(head);
+        System.out.println("Finally：" + listToString(dummy.next));
+
+        return dummy.next;
     }
 }
