@@ -11,12 +11,34 @@ package lee23;
 public class ListNode {
     int val;
     ListNode next;
-    ListNode() {}
-    ListNode(int val) { this.val = val; }
-    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+
+    ListNode() {
+    }
+
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
 }
 
 class Solution {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        ListNode[] lists = new ListNode[6];
+        lists[0] = new ListNode(1, new ListNode(4, new ListNode(5)));
+        lists[1] = new ListNode(1, new ListNode(3, new ListNode(4)));
+        lists[2] = new ListNode(2, new ListNode(6));
+        lists[3] = new ListNode(3, new ListNode(7));
+        lists[4] = new ListNode(4, new ListNode(8));
+        lists[5] = new ListNode(5, new ListNode(9));
+        solution.mergeKLists(lists);
+    }
+
+    // self-defined function to print a linked list
     private String listToString(ListNode list) {
         StringBuilder sb = new StringBuilder();
         while (list != null) {
@@ -34,71 +56,84 @@ class Solution {
         ListNode current = dummyHead;
 
         while (list1 != null && list2 != null) {
+
             if (list1.val < list2.val) {
+
                 current.next = list1;
                 list1 = list1.next;
+
             } else {
+
                 current.next = list2;
                 list2 = list2.next;
+
             }
+
             current = current.next;
         }
 
         if (list1 != null) {
-            current.next = list1;
-        } else {
-            current.next = list2;
-        }
 
+            current.next = list1;
+
+        } else {
+
+            current.next = list2;
+
+        }
 
         return dummyHead.next;
     }
 
     // Main function to merge k sorted lists
     public ListNode mergeKLists(ListNode[] lists) {
+
+        // Corner case
         int n = lists.length;
+
         if (n == 0) {
+
             return null;
+
         } else if (n == 1) {
+
             return lists[0];
+
         }
 
         // Merge lists in pairs until there is only one list left
+        // interval is the distance between two lists
         int interval = 1;
         System.out.println("create interval: " + interval);
-        while (interval < n) { // in a loop until there is only one list left
-            System.out.println();
+
+        while (interval < n) { // when interval is equal to n, we have merged all lists into one
+
             // merge list i with list i + interval. The interval is doubled after each iteration.
-            // i+interval must be less than n, otherwise there is no list to merge with
+            // i + interval must be less than n, common sense
             for (int i = 0; i < n - interval; i += interval * 2) {// increase i by interval * 2 each time
+
                 String indent = "  ".repeat(interval);
                 System.out.println(indent + "Interval: " + interval);
                 System.out.println(indent + "Merge Lists: i: " + i + " and (i + interval): " + (i + interval));
-                System.out.println(indent + "List "+ i + ": " + listToString(lists[i]));
-                System.out.println(indent + "List "+ (i + interval) + ": " + listToString(lists[i + interval]));
+                System.out.println(indent + "List " + i + ": " + listToString(lists[i]));
+                System.out.println(indent + "List " + (i + interval) + ": " + listToString(lists[i + interval]));
+
                 lists[i] = mergeTwoLists(lists[i], lists[i + interval]); // merge list i with list i + interval
+
                 System.out.println(indent + "Merged list: " + listToString(lists[i]));
                 System.out.println(indent + "Interval: " + interval);
-                System.out.println(indent + "we have merged two lists, list " + i + " and list " + (i + interval) +" to the list "+ i);
-                System.out.println(indent + "need to jump to next pair of lists:"+ " "+ (i + interval * 2) + " and "+ (i + interval * 2 + interval));
+                System.out.println(indent + "we have merged two lists, list " + i + " and list " + (i + interval) + " to the list " + i);
+                System.out.println(indent + "need to jump to next pair of lists:" + " " + (i + interval * 2) + " and " + (i + interval * 2 + interval));
                 System.out.println(indent + "so increase i by interval * 2 each time, i = " + i + " + " + interval + " * 2 = " + (i + interval * 2));
                 System.out.println();
+
             }
+
             System.out.println("double the interval: " + interval + " * 2 = " + (interval * 2));
+
             interval *= 2;// double the interval
         }
 
         return lists[0];// return the final list
-    }
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        ListNode[] lists = new ListNode[6];
-        lists[0] = new ListNode(1, new ListNode(4, new ListNode(5)));
-        lists[1] = new ListNode(1, new ListNode(3, new ListNode(4)));
-        lists[2] = new ListNode(2, new ListNode(6));
-        lists[3] = new ListNode(3, new ListNode(7));
-        lists[4] = new ListNode(4, new ListNode(8));
-        lists[5] = new ListNode(5, new ListNode(9));
-        solution.mergeKLists(lists);
     }
 }
