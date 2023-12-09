@@ -38,15 +38,16 @@ public class Solution {
         // 打印带有缩进的信息
         System.out.println(indent + "Current: " + current + ", Open: " + open + ", Close: " + close);
 
-        if (current.length() == 2 * n) {
+        if (current.length() == 2 * n) {  // 递归终止条件: 当前字符串长度等于2n
             result.add(current);
             System.out.println(indent + "return");
             return;
         }
 
-        if (open < n) {
+        if (open < n) { // 递归条件: 左括号数量小于n
             System.out.println(indent + "open move");
             System.out.println(indent + "|");
+            // 递归调用: 左括号数量加1
             generateParenthesisHelper(result, current + "(", open + 1, close, n, depth + 1);
             System.out.println(indent + "|");
             System.out.println(indent + "open back");
@@ -54,9 +55,10 @@ public class Solution {
 
         }
 
-        if (close < open) {
+        if (close < open) { // 递归条件: 右括号数量小于左括号数量
             System.out.println(indent + "close move");
             System.out.println(indent + "|");
+            // 递归调用: 右括号数量加1
             generateParenthesisHelper(result, current + ")", open, close + 1, n, depth + 1);
             System.out.println(indent + "|");
             System.out.println(indent + "close back");
