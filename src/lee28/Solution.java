@@ -10,8 +10,8 @@ class Solution {
     /**
      * 构建next数组步骤
      * 1.初始化next[0]=0
-     * 2.初始化i=1,j=0
-     * 3.如果needle[i]==needle[j],则next[i]=j+1,i++,j++
+     * 2.初始化i=1,j=0 !注意i从1开始
+     * 3.如果needle[i]==needle[j],则 j++, next[i]=j, i++
      * 4.如果needle[i]!=needle[j],则回溯j=next[j-1]
      * 5.如果j==0,则next[i]=0,i++
      * 6.重复3-5
@@ -81,8 +81,9 @@ class Solution {
             } else {
 
                 if (j > 0) {
-                    // 回溯
+                    // 回溯 backtrace
                     j = next[j - 1];
+                    // !注意i不变
 
                 } else {
                     i++;
