@@ -13,6 +13,7 @@ class Solution {
         var m = words.length;
         var n = words[0].length();
         var result = new ArrayList<Integer>();
+        var chars = s.toCharArray();
 
         // check if the length of s is less than m * n
         if (s.length() < m * n)
@@ -20,6 +21,7 @@ class Solution {
 
         // build the hashmap
         var map = new HashMap<String, Integer>();
+
         for (var word : words) {
             map.put(word, map.getOrDefault(word, 0) + 1);
         }
@@ -29,16 +31,32 @@ class Solution {
             // traverse the window with size n
             // build a hashmap for the window
             var windowMap = new HashMap<String, Integer>();
+            int count = 0;
             // count represents the number of satisfied words
             for (var j = 0; j < m; j++) {
+
                 // extract a word from the window
-                var temp = s.substring(i + j * n, i + j * n + n);
+                // avoid using substring, avoid creating too many strings
+                var temp = new String(chars, i + j * n, n);
+
+                // if the word is not in the hashmap, then break
+                if (!map.containsKey(temp))
+                    break;
+
                 // add the word to the window hashmap
                 windowMap.put(temp, windowMap.getOrDefault(temp, 0) + 1);
+
+                if (windowMap.get(temp) > map.get(temp))
+                    break;
+
+                count++;
+
+                // check if the current window is what we want
+                if (count == m)
+                    result.add(i);
+
             }
-            // check if the current window is what we want
-            if (windowMap.equals(map))
-                result.add(i);
+
         }
 
         return result;
